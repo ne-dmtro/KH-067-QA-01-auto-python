@@ -1,3 +1,4 @@
+import csv
 
 
 def main_menu():
@@ -13,13 +14,37 @@ def income_menu():
     print("____Income menu____")
     print("0 Exit to main menu")
     print("1 Add Income")
-    print("2 Delete Income")
+    print("2 Balance")
+    print("3 Delete Income")
 def expenses_menu():
     pass
 def update():
     pass
 def delete():
     pass
+
+def add_income():
+    date = input("Enter the date in the format....>>")
+    income = input("Enter new income >>")
+    with open('add_income.csv','w+', newline='') as file:
+        writer = csv.writer(file, delimiter="|")
+        writer.writerow(['date','income'])
+        writer.writerow([date, income])
+
+
+
+
+
+
+
+
+
+def balance():
+    with open('add_income.csv', 'r') as d:
+        reader = csv.reader(d)
+        for line in reader:
+            print("Your Total income\n", line)
+
 
 while True:
     main_menu()
@@ -32,9 +57,12 @@ while True:
             if income_option == "0":
                 main_menu()
             elif income_option == "1":
-                print("Add new Income")
+                 add_income()
+
             elif income_option == "2":
-                print("Delete Income")
+                balance()
+            elif income_option == "3":
+                print("Delete")
             else:
                 print("Enter correct number")
     elif option == "2":
