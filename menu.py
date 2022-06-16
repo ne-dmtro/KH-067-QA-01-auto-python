@@ -39,8 +39,9 @@ def show_income():
 
 def delete_income():
     #to do  - удаление дохода по интексу
-    # del_index = input("Enet index to delete >>")
-    # income_df.drop([], axis=0)
+    # del_index = input("Enter index to delete >>")
+    # if del_index == index:
+    # income_df.drop([1], axis=0)
  pass
 
 while True:
