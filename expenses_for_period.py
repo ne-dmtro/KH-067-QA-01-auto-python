@@ -13,3 +13,5 @@ def get_expenses_for_period():
             if first_date <= row[0] <= second_date:
                 total += float(row[2])
         print(f'Your expenses for this period = {total}')
+
+get_expenses_for_period()
