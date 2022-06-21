@@ -22,27 +22,29 @@ def expenses_menu():
     print("3 Other bills")
 
 def add_income():
-    #добавляем дату и доход в правильном формате
+    #добавляем индекс, дату и доход в правильном формате
     # to do - подумать над обработкой исключений
+    index = input("Enter Income index >>")
     date = input("Enter date in correct format >>")
     income = input("Enter your Income >>")
 
-    with open('test01.csv', 'a+', newline='') as file:
+    with open('data.csv', 'a+', newline='') as file:
         writer = csv.writer(file, delimiter='|')
-        writer.writerow([date, income])
+        writer.writerow([index, date, income])
 
 
 def show_income():
-    # показывает все доходы по датам
-    df = pd.read_csv('test01.csv')
-    print(df)
+    print("____Income List____")
+    # показывает все доходы
+    with open('data.csv', "r+") as file:
+        reader = csv.reader(file)
+
+        for row in reader:
+            print(row)
+
 
 def delete_income():
-    #to do  - удаление дохода по интексу
-    # del_index = input("Enter index to delete >>")
-    # if del_index == index:
-    # income_df.drop([1], axis=0)
- pass
+    pass
 
 while True:
     main_menu()
