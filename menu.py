@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from simple_term_menu import TerminalMenu
 
 options = ["Add expense", "Edit stable income(Setings)", "Exit"]
