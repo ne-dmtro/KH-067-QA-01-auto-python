@@ -1,5 +1,6 @@
 import enquiries
 
+
 options = ['thing 1', 'thing 2', 'thing 3']
 choice = enquiries.choose('Choose one of these options: ', options)
 
