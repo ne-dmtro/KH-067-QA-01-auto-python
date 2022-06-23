@@ -1,20 +1,66 @@
-#!/usr/bin/env python3
+from __future__ import print_function
+from builtins import str
+from builtins import input
+from builtins import object
+from menu import Menu
 
-from simple_term_menu import TerminalMenu
 
-options = ["Add expense", "Edit stable income(Setings)", "Exit"]
+class UserExample:
+    def __init__(self):
+        self.logged_in = False
+        self.username = "example_user"
 
-mainMenu = TerminalMenu(options, title = "Main menu")
-addMenu = TerminalMenu(["Food", "Entertainment", "New category", "Back"], title = "Add expense")
-quitting = False
+        settings_options = [
+            ("Change username", self.change_username),
+            ("Go back", Menu.CLOSE)
+        ]
+        self.settings_menu = Menu(
+            options=settings_options,
+            title="Settings",
+            message="Username: " + self.username,
+            refresh=self.updateUsername,
+            auto_clear=False
+        )
+        self.logged_out_options = [
+            ("Login", self.login, {"auth": lambda: input("Password: ")}),
+            ("Exit", Menu.CLOSE)
+        ]
+        self.logged_in_options = [
+            ("Settings", self.settings_menu.open),
+            ("Logout", self.logout),
+            ("Exit", Menu.CLOSE)
+        ]
+        self.main_menu = Menu(
+            title="Main Menu",
+            message="Hello guest",
+            refresh=self.checkUser)
+        self.main_menu.set_prompt(">")
 
-while quitting == False:
-    optionsIndex = mainMenu.show()
-    optionsChoice = options[optionsIndex]
+    def updateUsername(self):
+        self.settings_menu.set_message("Username: " + self.username)
 
-    if(optionsChoice == "Exit"):
-        quitting = True
-    if(optionsChoice == "Add expense"):
-        addMenu.show()
-    else:
-        qutting = True
+    def checkUser(self):
+        if self.logged_in:
+            self.main_menu.set_options(self.logged_in_options)
+            self.main_menu.set_message("Hello " + self.username)
+        else:
+            self.main_menu.set_options(self.logged_out_options)
+            self.main_menu.set_message("Hello guest")
+
+    def login(self, auth=None):
+        if auth:
+            auth()
+        self.logged_in = True
+
+    def logout(self):
+        self.logged_in = False
+
+    def change_username(self):
+        self.username = input("New username: ")
+
+    def run(self):
+        self.main_menu.open()
+
+
+if __name__ == "__main__":
+    UserExample().run()
