@@ -1,7 +1,7 @@
 import csv
 
 
-def get_month_expenses():
+def get_month_balance():
     correct_month = False
     month = ''
     while correct_month == False:
@@ -17,8 +17,8 @@ def get_month_expenses():
         except ValueError:
             print("Error: Invalid month.")
 
-    with open("incomes.csv") as fin:
-        pass
+    # with open("incomes.csv") as fin:
+    #     pass
 
     month_income = 10000
 
@@ -88,4 +88,4 @@ def get_month_expenses():
     print(f'Your balance in {month} = {month_balance}')
 
 
-get_month_expenses()
+get_month_balance()
