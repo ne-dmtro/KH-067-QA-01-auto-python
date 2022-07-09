@@ -13,11 +13,11 @@ def add_expenses():
         Date.append(date.today())
         Name.append(name_of_exp)
         Expense.append(enter_expense)
-    dict = {'Expenses Date': Date, 'Name of Expense': Name, 'Your Expenses': Expense}
+    dict = {'Date': Date, 'Name of Expense': Name, 'Your Expense': Expense}
     df = pd.DataFrame(dict)
     print(df)
-    df.to_csv('expenses.csv', mode='a', header=False, index=False)
-    total_expenses = df['Your Expenses'].sum()
+    df.to_csv('expenses.csv', mode='a+', header=False, index=False)
+    total_expenses = df['Your Expense'].sum()
     print("Sum of payments >>", total_expenses)
 
 add_expenses()

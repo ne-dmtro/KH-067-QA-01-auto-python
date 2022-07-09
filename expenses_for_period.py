@@ -3,27 +3,23 @@ import re
 
 
 def get_expenses_for_period():
-    correct_first_date = False
-    first_date = ''
-    while correct_first_date == False:
-        first_date = input("Enter the first date in format 'YYYY-MM-DD': ")
+    while True:
         try:
+            first_date = input("Enter the first date in format 'YYYY-MM-DD': ")
             if re.match(r'(\d{4}-\d{2}-\d{2})', first_date):
-                correct_first_date = True
+                break
             else:
-                raise ValueError("Error: Date format invalid.")
+                print("Error: Date format invalid.")
         except ValueError:
             print("Error: Date format invalid.")
 
-    correct_second_date = False
-    second_date = ''
-    while correct_second_date == False:
-        second_date = input("Enter the second date in format 'YYYY-MM-DD': ")
+    while True:
         try:
-            if re.match(r'(\d{4}-\d{2}-\d{2})', first_date):
-                correct_second_date = True
+            second_date = input("Enter the second date in format 'YYYY-MM-DD': ")
+            if re.match(r'(\d{4}-\d{2}-\d{2})', second_date):
+                break
             else:
-                raise ValueError("Error: Date format invalid.")
+                print("Error: Date format invalid.")
         except ValueError:
             print("Error: Date format invalid.")
 
@@ -35,4 +31,4 @@ def get_expenses_for_period():
         print(f'Your expenses for this period = {total}')
 
 
-get_expenses_for_period()()
+get_expenses_for_period()
