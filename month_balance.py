@@ -2,16 +2,14 @@ import csv
 
 
 def get_month_balance():
-    correct_month = False
-    month = ''
-    while correct_month == False:
-        month = input("Enter the month of expenses: ").lower()
-        months = ['january', 'february', 'march', 'april',
-                  'may', 'june', 'july', 'august', 'september',
-                  'october', 'november', 'december']
+    while True:
         try:
+            month = input("Enter the month of expenses: ").lower()
+            months = ['january', 'february', 'march', 'april',
+                      'may', 'june', 'july', 'august', 'september',
+                      'october', 'november', 'december']
             if month in months:
-                correct_month = True
+                break
             else:
                 raise ValueError("Error: Invalid month.")
         except ValueError:
